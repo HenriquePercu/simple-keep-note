@@ -2,6 +2,9 @@ plugins {
     kotlin("jvm") version "1.9.22"
     kotlin("plugin.allopen") version "1.9.22"
     id("io.quarkus")
+
+    // https://plugins.gradle.org/plugin/org.flywaydb.flyway
+    id("org.flywaydb.flyway") version "9.16.2"
 }
 
 repositories {
@@ -19,6 +22,20 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-resteasy-reactive")
+    implementation("io.quarkus:quarkus-resteasy-reactive-jackson")
+    implementation("io.quarkus:quarkus-config-yaml")
+    implementation("io.quarkus:quarkus-hibernate-validator")
+
+
+    // Database
+    implementation("io.quarkus:quarkus-hibernate-orm")
+    implementation("io.quarkus:quarkus-jdbc-postgresql")
+    implementation("io.quarkus:quarkus-flyway:${quarkusPlatformVersion}")
+    implementation("io.quarkus:quarkus-hibernate-orm-panache")
+
+    // Openapi
+    implementation("io.quarkus:quarkus-smallrye-openapi")
+
     testImplementation("io.quarkus:quarkus-junit5")
     testImplementation("io.rest-assured:rest-assured")
 }

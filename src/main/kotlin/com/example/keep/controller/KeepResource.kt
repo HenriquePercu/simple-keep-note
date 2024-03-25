@@ -1,7 +1,7 @@
 package com.example.keep.controller
 
 import com.example.keep.manager.KeepManager
-import com.example.keep.model.Keep
+import com.example.keep.model.KeepRequest
 import jakarta.ws.rs.Consumes
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
@@ -18,7 +18,7 @@ class KeepResource(
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    fun createKeep(keep: Keep){
+    fun createKeep(keep: KeepRequest){
 
         println(keep)
 

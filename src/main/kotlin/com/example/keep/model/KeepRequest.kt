@@ -1,6 +1,6 @@
 package com.example.keep.model
 
-data class Keep (
+data class KeepRequest (
     val title: String,
     val noteContent: String
 )

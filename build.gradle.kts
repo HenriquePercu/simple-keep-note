@@ -31,7 +31,9 @@ dependencies {
     implementation("io.quarkus:quarkus-hibernate-orm")
     implementation("io.quarkus:quarkus-jdbc-postgresql")
     implementation("io.quarkus:quarkus-flyway:${quarkusPlatformVersion}")
-    implementation("io.quarkus:quarkus-hibernate-orm-panache")
+
+    // ORM
+    implementation("org.ktorm:ktorm-core:3.6.0")
 
     // Openapi
     implementation("io.quarkus:quarkus-smallrye-openapi")

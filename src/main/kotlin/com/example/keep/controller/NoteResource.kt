@@ -1,7 +1,7 @@
 package com.example.keep.controller
 
-import com.example.keep.manager.KeepManager
-import com.example.keep.model.KeepRequest
+import com.example.keep.manager.NoteManager
+import com.example.keep.model.NoteRequest
 import jakarta.ws.rs.Consumes
 import jakarta.ws.rs.POST
 import jakarta.ws.rs.Path
@@ -9,18 +9,18 @@ import jakarta.ws.rs.Produces
 import jakarta.ws.rs.core.MediaType
 
 @Path("/v1/keep")
-class KeepResource(
+class NoteResource(
 
-    private val keepManager: KeepManager
+    private val noteManager: NoteManager
 
 ) {
 
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    fun createKeep(keep: KeepRequest){
+    fun createKeep(note: NoteRequest){
 
-        println(keep)
+        noteManager.storeNote(note)
 
     }
 

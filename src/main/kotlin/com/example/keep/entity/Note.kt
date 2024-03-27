@@ -15,11 +15,11 @@ interface Note : Entity<Note> {
     var noteContent: String
     var userId: String
 
-    object Keeps: Table<Note>("NOTE"){
+    object Notes: Table<Note>("NOTE"){
         val noteId = uuid("note_id").primaryKey().bindTo { it.noteId }
         val title = varchar("title").bindTo { it.title }
         val noteContent = varchar("note_content").bindTo { it.noteContent }
-        val userId = varchar("userId").bindTo { it.userId }
+        val userId = varchar("userId").bindTo { it.userId    }
     }
 
 }

@@ -6,13 +6,11 @@ import jakarta.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class NoteManager(
-
     private val noteRepository: NoteRepository
-
 ) {
 
     fun storeNote(noteRequest: NoteRequest) {
-        noteRepository.storeNote()
+        noteRepository.storeNote(noteRequest.toNoteEntity())
     }
 
 }

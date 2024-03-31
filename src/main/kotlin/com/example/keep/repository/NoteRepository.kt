@@ -12,15 +12,10 @@ class NoteRepository(
 ) {
     val notes get() = db.sequenceOf(Note.Notes)
 
-    fun storeNote(): Unit{
-        val note = Note{
-            title = "Titulo"
-            noteContent = "Content"
-            userId = "userId"
-        }
-
-        val noteAdded = notes.add(note)
-        println("Storing in database: $note")
+    fun storeNote(note: Note): Note {
+        notes.add(note)
+        println("Store in database: $note")
+        return note
     }
 
 }

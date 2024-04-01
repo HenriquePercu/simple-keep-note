@@ -1,12 +1,12 @@
 package com.example.keep.controller
 
+import com.example.keep.entity.Note
 import com.example.keep.manager.NoteManager
 import com.example.keep.model.NoteRequest
-import jakarta.ws.rs.Consumes
-import jakarta.ws.rs.POST
-import jakarta.ws.rs.Path
-import jakarta.ws.rs.Produces
+import jakarta.ws.rs.*
 import jakarta.ws.rs.core.MediaType
+import org.jboss.resteasy.reactive.RestResponse
+import java.util.UUID
 
 @Path("/v1/keep")
 class NoteResource(
@@ -18,10 +18,20 @@ class NoteResource(
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    fun createKeep(note: NoteRequest){
-
-        noteManager.storeNote(note)
+    fun createNote(note: NoteRequest): RestResponse<UUID> {
+        return RestResponse.accepted(noteManager.storeNote(note))
 
     }
+
+
+    @GET
+    @Path("/{key}")
+    @Produces(MediaType.APPLICATION_JSON)
+    fun getNote(@PathParam("key") key: String): RestResponse<Note> {
+
+        return RestResponse.ok()
+
+    }
+
 
 }

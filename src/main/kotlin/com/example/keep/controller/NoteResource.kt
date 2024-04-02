@@ -3,6 +3,7 @@ package com.example.keep.controller
 import com.example.keep.entity.Note
 import com.example.keep.manager.NoteManager
 import com.example.keep.model.NoteRequest
+import com.example.keep.model.NoteResponse
 import jakarta.ws.rs.*
 import jakarta.ws.rs.core.MediaType
 import org.jboss.resteasy.reactive.RestResponse
@@ -27,10 +28,8 @@ class NoteResource(
     @GET
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
-    fun getNote(@PathParam("key") key: String): RestResponse<Note> {
-
-        return RestResponse.ok()
-
+    fun getNote(@PathParam("key") key: UUID): RestResponse<NoteResponse> {
+        return RestResponse.ok(noteManager.getNote(key))
     }
 
 

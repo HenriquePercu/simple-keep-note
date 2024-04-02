@@ -3,8 +3,9 @@ package com.example.keep.repository
 import com.example.keep.entity.Note
 import jakarta.enterprise.context.ApplicationScoped
 import org.ktorm.database.Database
-import org.ktorm.entity.add
-import org.ktorm.entity.sequenceOf
+import org.ktorm.dsl.eq
+import org.ktorm.entity.*
+import java.util.UUID
 
 @ApplicationScoped
 class NoteRepository(
@@ -16,6 +17,10 @@ class NoteRepository(
         notes.add(note)
         println("Store in database: $note")
         return note
+    }
+
+    fun getNote(noteId: UUID): Note? {
+        return notes.find { it.noteId eq noteId }
     }
 
 }

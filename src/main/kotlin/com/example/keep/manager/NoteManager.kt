@@ -22,4 +22,8 @@ class NoteManager(
         } ?: throw IllegalArgumentException("Note not found")
     }
 
+    fun getAllNotesByUserId(userId: String): List<NoteResponse> {
+        return noteRepository.getNotesFromUserId(userId).map { NoteResponse.fromNoteEntity(it) }
+    }
+
 }

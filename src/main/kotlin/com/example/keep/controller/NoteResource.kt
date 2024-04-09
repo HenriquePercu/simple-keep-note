@@ -1,6 +1,5 @@
 package com.example.keep.controller
 
-import com.example.keep.entity.Note
 import com.example.keep.manager.NoteManager
 import com.example.keep.model.NoteRequest
 import com.example.keep.model.NoteResponse
@@ -33,4 +32,9 @@ class NoteResource(
     }
 
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    fun getAllNotesFromUser(): RestResponse<List<NoteResponse>> {
+        return RestResponse.ok(noteManager.getAllNotesByUserId("12"))
+    }
 }

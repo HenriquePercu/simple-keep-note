@@ -23,4 +23,8 @@ class NoteRepository(
         return notes.find { it.noteId eq noteId }
     }
 
+    fun getNotesFromUserId(userId: String) : List<Note> {
+        return notes.filter { it.userId eq userId }.toList()
+    }
+
 }

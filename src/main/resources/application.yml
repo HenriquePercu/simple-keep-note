@@ -7,6 +7,33 @@ quarkus:
     validate-migration-naming: true
   datasource:
     db-kind: postgresql
+  keycloak:
+    devservices:
+      enabled: false
+  oidc:
+    auth-server-url: ${oidc-auth-server}
+    client-id: ${oidc-client-id}
+    application-type: hybrid
+    authentication:
+      scopes: profile
+    credentials:
+      secret: ${oidc-client-secret}
+    token:
+      verify-access-token-with-user-info: true
+    roles:
+      role-claim-path: "security-roles"
+  log:
+    category:
+      "io.quarkus.oidc.client.runtime.OidcClientImpl":
+        level: DEBUG
+        min-level: DEBUG
+      "io.quarkus.oidc.client.runtime.OidcClientRecorder":
+        level: DEBUG
+        min-level: DEBUG
+      "io.quarkus.oidc":
+        level: DEBUG
+        min-level: DEBUG
+
 
 "%dev":
   quarkus:

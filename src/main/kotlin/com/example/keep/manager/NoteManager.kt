@@ -12,8 +12,8 @@ class NoteManager(
     private val noteRepository: NoteRepository
 ) {
 
-    fun storeNote(noteRequest: NoteRequest): UUID {
-        return noteRepository.storeNote(noteRequest.toNoteEntity()).noteId
+    fun storeNote(noteRequest: NoteRequest, userId: String): UUID {
+        return noteRepository.storeNote(noteRequest.toNoteEntity(userId)).noteId
     }
 
     fun getNote(noteId: UUID): NoteResponse {

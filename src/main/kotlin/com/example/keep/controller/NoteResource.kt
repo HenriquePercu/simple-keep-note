@@ -26,22 +26,21 @@ class NoteResource(
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("admin")
     fun createNote(note: NoteRequest): RestResponse<UUID> {
-        print("User is ${userInfo.email}")
-        return RestResponse.accepted(noteManager.storeNote(note))
-
+        return RestResponse.accepted(noteManager.storeNote(note, userInfo.subject.split("|")[1]))
     }
 
     @GET
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
     fun getNote(@PathParam("key") key: UUID): RestResponse<NoteResponse> {
-        return RestResponse.ok(noteManager.getNote(key))
+        return RestResponse.ok(noteManager.getNote(key))// TODO validate the userId is the same user of the note
     }
 
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("admin")
     fun getAllNotesFromUser(): RestResponse<List<NoteResponse>> {
-        return RestResponse.ok(noteManager.getAllNotesByUserId("12"))
+        return RestResponse.ok(noteManager.getAllNotesByUserId(userInfo.subject.split("|")[1]))
     }
 }

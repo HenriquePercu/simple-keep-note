@@ -7,12 +7,12 @@ data class NoteRequest(
     val noteContent: String
 ) {
 
-    fun toNoteEntity(): Note {
+    fun toNoteEntity(userId: String): Note {
         val note = this
         return Note{
             this.title = note.title
             this.noteContent = note.noteContent
-            this.userId = "12"
+            this.userId = userId
         }
     }
 

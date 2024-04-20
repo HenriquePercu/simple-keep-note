@@ -26,14 +26,14 @@ class NoteResource(
     @Consumes(MediaType.APPLICATION_JSON)
     @RolesAllowed("admin")
     fun createNote(note: NoteRequest): RestResponse<UUID> {
-        return RestResponse.accepted(noteManager.storeNote(note, userInfo.subject.split("|")[1]))
+        return RestResponse.accepted(noteManager.storeNote(note, userInfo.extractUserId()))
     }
 
     @GET
     @Path("/{key}")
     @Produces(MediaType.APPLICATION_JSON)
     fun getNote(@PathParam("key") key: UUID): RestResponse<NoteResponse> {
-        return RestResponse.ok(noteManager.getNote(key))// TODO validate the userId is the same user of the note
+        return RestResponse.ok(noteManager.getNote(key, userInfo.extractUserId()))
     }
 
 
@@ -41,6 +41,10 @@ class NoteResource(
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("admin")
     fun getAllNotesFromUser(): RestResponse<List<NoteResponse>> {
-        return RestResponse.ok(noteManager.getAllNotesByUserId(userInfo.subject.split("|")[1]))
+        return RestResponse.ok(noteManager.getAllNotesByUserId(userInfo.extractUserId()))
     }
+
+    fun UserInfo.extractUserId(): String =
+        this.subject.split("|")[1]
+
 }
